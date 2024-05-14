@@ -3,7 +3,7 @@ extends Area2D
 @onready var timer = $Timer
 
 func _on_body_entered(body):
-	print("you die mf")
+	print("Why you loser ah!")
 	timer.start()
 
 
