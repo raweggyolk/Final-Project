@@ -103,7 +103,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_kqpoy")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"idle",
 "speed": 10.0
 }, {
 "frames": [{
@@ -180,8 +180,14 @@ script = ExtResource("1_72j4f")
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_hwi70")
 animation = &"jump"
-frame_progress = 0.430555
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_x2yj7")
+
+[node name="CoyoteJumpTimer" type="Timer" parent="."]
+wait_time = 0.02
+one_shot = true
+
+[node name="WallJumpTimer" type="Timer" parent="."]
+one_shot = true
