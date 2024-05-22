@@ -185,3 +185,7 @@ frame_progress = 0.430555
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_x2yj7")
+
+[node name="Coyote_Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Coyote_Timer" to="." method="Coyote_Timeout"]

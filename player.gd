@@ -13,6 +13,7 @@ var Jump_Available: bool = true
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var coyote_timer = $Coyote_Timer
 @export var Coyote_Time: float = 0.2
 
 func _physics_process(delta):
@@ -21,17 +22,20 @@ func _physics_process(delta):
 	if is_on_floor():
 		jump_count = 0
 		if Jump_Available:
-			get_tree().create_timer(Coyote_Time).timeout.connect(Coyote_Timeout)
+			if coyote_timer.is_stopped():
+				coyote_timer.start(Coyote_Time)
+			#get_tree().create_timer(Coyote_Time).timeout.connect(Coyote_Timeout)
 		
 	else:
 		Jump_Available = true
-	
+		coyote_timer.stop()
 	
 	
 	if Input.is_action_just_pressed("Jump") and jump_count < max_jumps and Jump_Available:
 		velocity.y = JUMP_VELOCITY
-		jump_count += 1
 		Jump_Available = false
+		jump_count += 1
+		
 		
 	handle_jump()
 
