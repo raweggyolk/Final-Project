@@ -7,23 +7,32 @@ const wall_jump_pushback = 500.0
 var is_wall_sliding = true
 var jump_count = 0
 var max_jumps = 2
+var Jump_Available: bool = true
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite = $AnimatedSprite2D
+@export var Coyote_Time: float = 0.2
 
 func _physics_process(delta):
-	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	
 	if is_on_floor():
 		jump_count = 0
+		if Jump_Available:
+			get_tree().create_timer(Coyote_Time).timeout.connect(Coyote_Timeout)
+		
+	else:
+		Jump_Available = true
 	
-	if Input.is_action_just_pressed("Jump") and jump_count < max_jumps:
+	
+	
+	if Input.is_action_just_pressed("Jump") and jump_count < max_jumps and Jump_Available:
 		velocity.y = JUMP_VELOCITY
 		jump_count += 1
+		Jump_Available = false
+		
 	handle_jump()
 
 	
@@ -60,4 +69,5 @@ func handle_jump():
 			velocity.y = JUMP_VELOCITY
 			velocity.x = wall_jump_pushback
 		
-
+func Coyote_Timeout():
+	Jump_Available = false
