@@ -75,3 +75,9 @@ func handle_jump():
 		
 func Coyote_Timeout():
 	Jump_Available = false
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("portal"):
+		position.x = 1834
+		position.y = -110
