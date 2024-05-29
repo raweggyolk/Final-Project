@@ -639,6 +639,9 @@ position = Vector2(1240, 104)
 [node name="Coin16" parent="Coins" instance=ExtResource("4_7xven")]
 position = Vector2(473, 89)
 
+[node name="Coin17" parent="Coins" instance=ExtResource("4_7xven")]
+position = Vector2(1831, -11)
+
 [node name="Platforms" type="Node" parent="."]
 
 [node name="Platform" parent="Platforms" instance=ExtResource("3_8gayf")]
@@ -715,25 +718,27 @@ theme_override_fonts/font = ExtResource("7_ev6jx")
 theme_override_font_sizes/font_size = 8
 text = "Falling hurts..."
 
-[node name="Portal" type="Area2D" parent="." groups=["portal"]]
+[node name="Portals" type="Node" parent="."]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Portal"]
+[node name="Portal" type="Area2D" parent="Portals" groups=["portal"]]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Portals/Portal"]
 position = Vector2(679, 37)
 shape = SubResource("CapsuleShape2D_b57lo")
 
-[node name="Sprite2D" type="Sprite2D" parent="Portal"]
+[node name="Sprite2D" type="Sprite2D" parent="Portals/Portal"]
 position = Vector2(682, 36)
 scale = Vector2(2.5, 2.8125)
 texture = ExtResource("10_svqs5")
 
-[node name="Portal2" type="Area2D" parent="." groups=["portal"]]
+[node name="Portal2" type="Area2D" parent="Portals" groups=["portal"]]
 position = Vector2(-1, 41)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portals/Portal2"]
 position = Vector2(1834, -127)
 shape = SubResource("CapsuleShape2D_qf40c")
 
-[node name="Sprite2D" type="Sprite2D" parent="Portal2"]
+[node name="Sprite2D" type="Sprite2D" parent="Portals/Portal2"]
 position = Vector2(1835, -127)
 scale = Vector2(2.5, 2.875)
 texture = ExtResource("11_s2vky")
